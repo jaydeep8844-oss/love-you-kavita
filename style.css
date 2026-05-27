@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #fce3ec, #ffe8d6);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 700px;
+    margin: 100px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #d63384;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #444;
+}
+
+h2 {
+    margin-top: 40px;
+    color: #ff4d6d;
+}
