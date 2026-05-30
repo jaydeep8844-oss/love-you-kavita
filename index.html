@@ -1,155 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For My Kavita ❤️</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
-      background: #0d0a0b;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background: #0a0610;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       font-family: 'DM Sans', sans-serif;
       color: #f5ede8;
       padding: 2rem 1rem 6rem;
-      position: relative;
-      overflow-x: hidden;
+      position: relative; overflow: hidden;
     }
-
-    /* soft radial glow */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(180,60,80,0.18) 0%, transparent 70%);
-      pointer-events: none;
+    #bgCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+    .aurora { position:fixed; border-radius:50%; filter:blur(80px); opacity:0.25; pointer-events:none; z-index:1; animation:drift linear infinite; }
+    .aurora-1{width:500px;height:400px;background:#8b1a4a;top:-10%;left:-10%;animation-duration:18s}
+    .aurora-2{width:400px;height:500px;background:#3a0d6e;top:20%;right:-15%;animation-duration:22s;animation-delay:-8s}
+    .aurora-3{width:600px;height:300px;background:#6d1040;bottom:-5%;left:20%;animation-duration:26s;animation-delay:-14s}
+    .aurora-4{width:300px;height:300px;background:#1a0a5c;top:50%;left:30%;animation-duration:20s;animation-delay:-5s}
+    @keyframes drift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,30px) scale(0.96)}100%{transform:translate(0,0) scale(1)}}
+    .petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2}
+    .petal{position:absolute;bottom:-60px;opacity:0;animation:petalFloat linear infinite}
+    @keyframes petalFloat{0%{transform:translateY(0) rotate(0deg) scale(0.8);opacity:0}10%{opacity:0.9}90%{opacity:0.5}100%{transform:translateY(-110vh) rotate(720deg) scale(1.1);opacity:0}}
+    .container{max-width:560px;width:100%;text-align:center;position:relative;z-index:10;animation:fadeUp 1.2s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .glass-card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,180,190,0.15);
+      border-radius:24px; padding:3rem 2.5rem;
+      backdrop-filter:blur(20px);
+      box-shadow:0 0 60px rgba(160,40,80,0.12),inset 0 1px 0 rgba(255,255,255,0.08);
+      position:relative; overflow:hidden;
     }
-
-    .container {
-      max-width: 560px;
-      width: 100%;
-      text-align: center;
-      animation: fadeUp 1s ease both;
+    .glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,180,200,0.5),transparent)}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:600;color:#ffd6dc;letter-spacing:0.02em;margin-bottom:2rem;text-shadow:0 0 40px rgba(255,120,140,0.3)}
+    p{font-size:1.05rem;font-weight:300;line-height:1.95;color:#e8d8d4;margin-bottom:1.6rem}
+    h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;font-weight:400;color:#ffd6dc;margin-top:2rem;text-shadow:0 0 30px rgba(255,120,140,0.25)}
+    .divider{display:flex;align-items:center;gap:12px;margin:1.5rem 0;opacity:0.35}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#c97a85,transparent)}
+    .divider span{font-size:0.7rem;color:#c97a85;letter-spacing:4px}
+    .music-btn{
+      position:fixed;top:1.2rem;right:1.2rem;z-index:100;
+      background:rgba(20,5,12,0.75);
+      border:1px solid rgba(200,80,90,0.4);
+      border-radius:50px;padding:9px 18px;
+      display:flex;align-items:center;gap:8px;
+      cursor:pointer;backdrop-filter:blur(12px);
+      transition:all 0.3s ease;
+      color:#f9c9c9;font-family:'DM Sans',sans-serif;
+      font-size:0.8rem;font-weight:300;letter-spacing:0.05em;
+      box-shadow:0 0 20px rgba(180,60,80,0.15);
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      font-weight: 600;
-      color: #f9c9c9;
-      letter-spacing: 0.02em;
-      margin-bottom: 2rem;
-      animation: fadeUp 1s 0.1s ease both;
-    }
-
-    p {
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: #e8dcd8;
-      margin-bottom: 1.6rem;
-      animation: fadeUp 1s 0.25s ease both;
-    }
-
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      font-weight: 400;
-      color: #f9c9c9;
-      margin-top: 2rem;
-      animation: fadeUp 1s 0.4s ease both;
-    }
-
-    /* ── Footer Ribbon ── */
-    .footer-ribbon {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(90deg, #1a0a0e 0%, #2b0d14 40%, #1a0a0e 100%);
-      border-top: 1px solid rgba(200, 80, 90, 0.35);
-      padding: 10px 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      overflow: hidden;
-    }
-
-    .ribbon-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: #c97a85;
-      white-space: nowrap;
-      animation: marquee 22s linear infinite;
-      letter-spacing: 0.03em;
-    }
-
-    @keyframes marquee {
-      0%   { transform: translateX(60vw); }
-      100% { transform: translateX(-110%); }
-    }
-
-    .ribbon-badge {
-      position: absolute;
-      left: 1rem;
-      font-size: 0.65rem;
-      background: rgba(180,60,80,0.2);
-      border: 1px solid rgba(180,60,80,0.4);
-      color: #e09099;
-      padding: 2px 8px;
-      border-radius: 20px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+    .music-btn:hover{background:rgba(50,10,22,0.9);box-shadow:0 0 30px rgba(180,60,80,0.35);transform:scale(1.04)}
+    .music-icon{font-size:1.1rem}
+    .music-icon.playing{animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+    .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+    .bar{width:3px;background:#c97a85;border-radius:2px}
+    .bars.playing .bar{animation:barDance 0.7s ease-in-out infinite alternate}
+    .bar:nth-child(1){height:6px;animation-delay:0s}
+    .bar:nth-child(2){height:12px;animation-delay:.12s}
+    .bar:nth-child(3){height:8px;animation-delay:.25s}
+    .bar:nth-child(4){height:14px;animation-delay:.08s}
+    .bar:nth-child(5){height:5px;animation-delay:.2s}
+    .bars:not(.playing) .bar{transform:scaleY(0.3)}
+    @keyframes barDance{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+    .song-name{position:fixed;top:4.2rem;right:1.2rem;font-size:0.7rem;color:#a06070;letter-spacing:0.04em;font-style:italic;opacity:0;transition:opacity 0.5s ease;z-index:99;text-align:right}
+    .song-name.visible{opacity:1}
+    .footer-ribbon{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(90deg,#0e0510 0%,#1c0a14 40%,#0e0510 100%);border-top:1px solid rgba(200,80,90,0.25);padding:10px 1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:50}
+    .ribbon-text{font-size:0.78rem;font-weight:300;color:#c97a85;white-space:nowrap;animation:marquee 22s linear infinite;letter-spacing:0.03em}
+    @keyframes marquee{0%{transform:translateX(60vw)}100%{transform:translateX(-110%)}}
+    .ribbon-badge{position:absolute;left:1rem;font-size:0.65rem;background:rgba(180,60,80,0.15);border:1px solid rgba(180,60,80,0.35);color:#e09099;padding:2px 8px;border-radius:20px;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
   </style>
 </head>
 <body>
 
+  <canvas id="bgCanvas"></canvas>
+  <div class="aurora aurora-1"></div>
+  <div class="aurora aurora-2"></div>
+  <div class="aurora aurora-3"></div>
+  <div class="aurora aurora-4"></div>
+  <div class="petals" id="petals"></div>
+
+  <!-- song.mp3 must be uploaded to the same folder in your GitHub repo -->
+  <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" onclick="toggleMusic()">
+    <span class="music-icon" id="musicIcon">🎵</span>
+    <span id="musicLabel">Play Music</span>
+    <div class="bars" id="bars">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div>
+    </div>
+  </button>
+  <div class="song-name" id="songName">🎶 Pal Pal Dil Ke Paas — Instrumental</div>
+
   <div class="container">
-    <h1>To My Life Partner ❤️</h1>
-
-    <p>
-      I don't know when we'll meet,<br/>
-      but I know one thing —<br/>
-      I'll always respect you,<br/>
-      support you,<br/>
-      and choose you.
-    </p>
-
-    <p>
-      This QR code was not just a scan,<br/>
-      it was a small step towards our forever.
-    </p>
-
-    <h2>— Jaydeep ❤️</h2>
+    <div class="glass-card">
+      <h1>To My Life Partner ❤️</h1>
+      <div class="divider"><span>✦ ✦ ✦</span></div>
+      <p>
+        I don't know when we'll meet,<br/>
+        but I know one thing —<br/>
+        I'll always respect you,<br/>
+        support you,<br/>
+        and choose you.
+      </p>
+      <div class="divider"><span>✦ ✦ ✦</span></div>
+      <p>
+        This QR code was not just a scan,<br/>
+        it was a small step towards our forever.
+      </p>
+      <h4>— Jaydeep ❤️</h4>
+    </div>
   </div>
 
-  <!-- Footer Ribbon -->
   <div class="footer-ribbon">
     <span class="ribbon-badge">⚙️ koik</span>
     <span class="ribbon-text">
       An SAP consultant (koik) made this. Which means it's over-engineered, slightly messy, and somehow still needs more testing — but it was made with love ❤️ &nbsp;&nbsp;&nbsp; An SAP consultant (koik) made this. Which means it's over-engineered, slightly messy, and somehow still needs more testing — but it was made with love ❤️
     </span>
   </div>
+
+  <script>
+    // Starfield
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [], shootingStars = [], W, H;
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    for (let i = 0; i < 180; i++) stars.push({
+      x: Math.random(), y: Math.random(),
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.7 + 0.2,
+      twinkleSpeed: 0.008 + Math.random() * 0.015,
+      twinkleOffset: Math.random() * Math.PI * 2,
+      hue: Math.random() < 0.2 ? 'rgba(255,220,220,' : 'rgba(255,255,255,'
+    });
+    setInterval(() => {
+      if (shootingStars.length < 3) shootingStars.push({
+        x: Math.random() * W * 0.7, y: Math.random() * H * 0.4,
+        len: 100 + Math.random() * 120, speed: 6 + Math.random() * 5,
+        alpha: 1, angle: Math.PI / 5
+      });
+    }, 4000);
+    function drawStars(t) {
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        const a = s.alpha * (0.6 + 0.4 * Math.sin(t * s.twinkleSpeed + s.twinkleOffset));
+        ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.hue + a + ')'; ctx.fill();
+      });
+      shootingStars = shootingStars.filter(ss => ss.alpha > 0.02);
+      shootingStars.forEach(ss => {
+        const g = ctx.createLinearGradient(ss.x, ss.y, ss.x - Math.cos(ss.angle) * ss.len, ss.y - Math.sin(ss.angle) * ss.len);
+        g.addColorStop(0, `rgba(255,220,230,${ss.alpha})`); g.addColorStop(1, 'rgba(255,220,230,0)');
+        ctx.beginPath(); ctx.moveTo(ss.x, ss.y);
+        ctx.lineTo(ss.x - Math.cos(ss.angle) * ss.len, ss.y - Math.sin(ss.angle) * ss.len);
+        ctx.strokeStyle = g; ctx.lineWidth = 1.5; ctx.stroke();
+        ss.x += Math.cos(ss.angle) * ss.speed; ss.y += Math.sin(ss.angle) * ss.speed; ss.alpha -= 0.018;
+      });
+    }
+    let t = 0;
+    function animate() { t++; drawStars(t); requestAnimationFrame(animate); }
+    animate();
+
+    // Floating petals
+    const petalsEl = document.getElementById('petals');
+    const chars = ['❤️','💕','🌸','🌹','💗','✨','💖','🌺'];
+    function spawnPetal() {
+      const el = document.createElement('div');
+      el.className = 'petal';
+      el.textContent = chars[Math.floor(Math.random() * chars.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      const dur = 8 + Math.random() * 9;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = Math.random() * 2 + 's';
+      el.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+      petalsEl.appendChild(el);
+      setTimeout(() => el.remove(), (dur + 3) * 1000);
+    }
+    setInterval(spawnPetal, 1100);
+
+    // Music toggle
+    let playing = false;
+    const audio = document.getElementById('bgMusic');
+    function toggleMusic() {
+      playing = !playing;
+      const icon = document.getElementById('musicIcon');
+      const label = document.getElementById('musicLabel');
+      const bars = document.getElementById('bars');
+      const songName = document.getElementById('songName');
+      if (playing) {
+        audio.play();
+        icon.textContent = '🎶'; icon.classList.add('playing');
+        label.textContent = 'Now Playing';
+        bars.classList.add('playing');
+        songName.classList.add('visible');
+      } else {
+        audio.pause();
+        icon.textContent = '🎵'; icon.classList.remove('playing');
+        label.textContent = 'Play Music';
+        bars.classList.remove('playing');
+        songName.classList.remove('visible');
+      }
+    }
+  </script>
 
 </body>
 </html>
